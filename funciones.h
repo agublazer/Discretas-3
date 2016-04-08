@@ -1,6 +1,3 @@
-#include<iostream>
-using namespace std;
-
 int mod(int a, int b)
 {
     int q,r;
