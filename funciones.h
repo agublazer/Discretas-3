@@ -1,3 +1,10 @@
+#ifndef FUNCIONES_H_INCLUDED
+#define FUNCIONES_H_INCLUDED
+
+#include<iostream>
+#include<string>
+using namespace std;
+
 int mod(int a, int b)
 {
     int q,r;
@@ -28,3 +35,4 @@ int mcd(int a, int b)
     }
     return r2;
 }
+#endif // FUNCIONES_H_INCLUDED
