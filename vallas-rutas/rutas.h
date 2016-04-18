@@ -2,7 +2,6 @@
 #define RUTAS_H_INCLUDED
 #include"funciones.h"
 
-
 void sub1(string msj1, string &msj2,int &entrada,int &salida, int n1, int k, int c, int modo)
 {
     if (modo==1)
@@ -147,23 +146,23 @@ public:
     }
     string cifrar(string m)
     {
-        string n = m;
-        int a=m.size();
+        string m2=m;
+        int a=m2.size();
         if(mod(a,clave) !=0)
         {
             int res=a/clave;
             res++;
             int b=res*clave;
             for(int i=0;i<(b-a);i++)
-                n+="w";
+            m2+='$';
         }
-        return op(n,1);
+        return op(m2,1);
     }
     string descifrar(string m)
     {
         string n = op(m,0);
         int x=n.size()-1;
-        while(n[x]=='w')
+        while(n[x]=='$')
         {
             n.pop_back();
             x--;
