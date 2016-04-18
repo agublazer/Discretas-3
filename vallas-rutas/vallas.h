@@ -80,27 +80,30 @@ public:
          return msj2;
         }
     }
-    string cifrar(string &msj1)
+    string cifrar(string msj1)
     {
-        while(msj1.size()<clave)
-            msj1+="w";
+        string msj2=msj1;
+        while(msj2.size()<clave)
+            msj2+='$';
 
         int n = clave;
-        while(msj1.size()>n)
+
+        while(msj2.size()>n)
             n+=(clave-2)+clave;
 
-        n-=msj1.size();
-        for(int i=0;i<n;i++)
-            msj1+="w";
+        n-=msj2.size();
 
-        return op(msj1,1);
+        for(int i=0;i<n;i++)
+            msj2+='$';
+
+        return op(msj2,1);
     }
     string descifrar(string &msj1)
     {
         string msj2 = op(msj1,0);
         int x=msj2.size()-1;
 
-        while(msj2[x]=='w')
+        while(msj2[x]=='$')
         {
             msj2.pop_back();
             x--;
@@ -109,4 +112,5 @@ public:
     }
 };
 #endif // VALLAS_H_INCLUDED
+
 
