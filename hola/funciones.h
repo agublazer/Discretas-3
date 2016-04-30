@@ -71,5 +71,34 @@ void euclides_ext(int a, int b, int &fin1,int &fin2)
     fin1=x_1;
     fin2=y_1;
 }
+int mod_inv(int a, int b)
+{
+	int b0 = b, t, q;
+	int x0 = 0, x1 = 1;
+	if (b == 1)
+        return 1;
+	while (a > 1) {
+		q = a / b;
+		t = b, b = a % b, a = t;
+		t = x0, x0 = x1 - q * x0, x1 = t;
+	}
+	if (x1 < 0)
+        x1 += b0;
+	return x1;
+}
 
+
+int exp_mod(int a,int exp, int n)
+{
+    int result = 1;
+    while(exp>0)
+    {
+        if (mod(exp,2)==1)
+            result = mod(result*a,n);
+
+        a = mod(a*a,n);
+        exp = exp/2;
+    }
+    return result;
+}
 #endif // FUNCIONES_H_INCLUDED
