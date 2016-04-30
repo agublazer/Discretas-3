@@ -17,35 +17,55 @@ public:
     afin()
     {
         srand(time(NULL));
-        clave_b = rand()%100+1;
+        clave_b = rand()%5000+1;
         clave_a = 0;
-        alfabeto = "abcdefghijklmnopqrstuvwxyz";
+        alfabeto = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789.,-_";
         tamano_alfabeto = alfabeto.size();
+        this->generar_claveA();
+    }
+
+    afin(int a)
+    {
+        clave_a = a;
+        srand(time(NULL));
+        clave_b = 0;
+        alfabeto = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789.,-_";
+        tamano_alfabeto = alfabeto.size();
+        this->generar_claveB();
     }
 
     afin(int a, int b)
     {
         clave_a=a;
         clave_b=b;
-        alfabeto = "abcdefghijklmnopqrstuvwxyz";
+        alfabeto = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789.,-_";
         tamano_alfabeto = alfabeto.size();
     }
 
-    void generar_clave()
+    void generar_claveA()
     {
-        cout<<clave_b<<endl;
         srand(time(NULL));
-        clave_a = rand()%200+1;
+        clave_a = rand()%tamano_alfabeto+1;
         int m = mcd(clave_a,clave_b);
         while(m != 1)
         {
-            //srand(time(NULL));
-            clave_a = rand()%200+1;
+            clave_a = rand()%tamano_alfabeto+1;
             m = mcd(clave_a,clave_b);
-            cout<<clave_a<<endl;
         }
-        cout<<"final: "<<clave_a<<endl;
     }
+    void generar_claveB()
+    {
+        srand(time(NULL));
+        clave_b = rand()%5000+1;
+        int m = mcd(clave_a,clave_b);
+        while(m != 1)
+        {
+            clave_b = rand()%5000+1;
+            m = mcd(clave_a,clave_b);
+        }
+    }
+
+
     string cifrar(string mensaje)
     {
         if (clave_a==0)
@@ -83,14 +103,12 @@ public:
         {
             a = alfabeto.find(mensaje[i]);
             b = x*(a-clave_b);
-            if (b<0)
+            if (b<0 or b>=tamano_alfabeto)
             {
-                b = mod(b,tamano_alfabeto);
-                salida[i]=alfabeto[b];
+                salida[i]=alfabeto[mod(b,tamano_alfabeto)];
             }
             else
                 salida[i]=alfabeto[b];
-
 
         }
         return salida;
