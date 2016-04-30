@@ -32,9 +32,13 @@ public:
     {
         clave_privada = mod_inv(clave_publica,nx);
     }
-    int cifrar(int m,int k_publica, int n)
+    int cifrar(int m,rsa g)
     {
-        return exp_mod(m,k_publica,n);
+        return exp_mod(m,g.clavePublica(),g.getN());
+    }
+    int descifrar(int m)
+    {
+        return exp_mod(m,clave_privada,n);
     }
     int clavePrivada() {return clave_privada;};
     int clavePublica() {return clave_publica;};
