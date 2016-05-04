@@ -4,12 +4,12 @@
 
 class rsa{
 private:
-    int p,q;
-    int clave_publica, clave_privada;
-    int n;
-    int nx;
+    long long p,q;
+    long long clave_publica, clave_privada;
+    long long n;
+    long long nx;
 public:
-    rsa(int p,int q)
+    rsa(long long p,long long q)
     {
         this->p=p;
         this->q=q;
