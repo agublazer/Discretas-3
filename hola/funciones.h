@@ -5,9 +5,9 @@
 #include<string>
 using namespace std;
 
-int mod(int a, int b)
+long long mod(long long a, long long b)
 {
-    int q,r;
+    long long q,r;
     q = a/b;
     r = a-(q*b);
     if (r<0)
@@ -15,9 +15,9 @@ int mod(int a, int b)
     return r;
 }
 
-int mcd(int a, int b)
+long long mcd(long long a, long long b)
 {
-    int r1,r2,c;
+    long long r1,r2,c;
     c = a/b;
     r1 = a-(b*c);
 
@@ -36,9 +36,9 @@ int mcd(int a, int b)
     return r2;
 }
 
-void euclides_ext(int a, int b, int &fin1,int &fin2)
+void euclides_ext(long long a, long long b, long long &fin1,long long &fin2)
 {
-    int q,x,x_1,y,y_1,t;
+    long long q,x,x_1,y,y_1,t;
 
     if (a == 0)
     {
@@ -71,10 +71,10 @@ void euclides_ext(int a, int b, int &fin1,int &fin2)
     fin1=x_1;
     fin2=y_1;
 }
-int mod_inv(int a, int b)
+long long mod_inv(long long a, long long b)
 {
-	int b0 = b, t, q;
-	int x0 = 0, x1 = 1;
+	long long b0 = b, t, q;
+	long long x0 = 0, x1 = 1;
 	if (b == 1)
         	return 1;
 	while (a > 1) 
@@ -94,9 +94,9 @@ int mod_inv(int a, int b)
 
 
 
-int exp_mod(int a,int exp, int n)
+long long exp_mod(long long a,long long exp, long long n)
 {
-    int result = 1;
+    long long result = 1;
     while(exp>0)
     {
         if (mod(exp,2)==1)
