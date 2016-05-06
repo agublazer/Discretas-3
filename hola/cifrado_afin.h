@@ -71,7 +71,8 @@ public:
         if (clave_a==0)
             return "clave no generada";
 
-        string salida=mensaje;
+        string salida;
+        salida.resize(mensaje.size(),'$');
         int a;
         int b;
         int c = mensaje.size();
@@ -92,11 +93,12 @@ public:
     }
     string descifrar(string mensaje)
     {
-        string salida = mensaje;
+        string salida;
+        salida.resize(mensaje.size(),'$');
         int a,b,x,y;
         euclides_ext(clave_a,tamano_alfabeto,x,y);
         if (x<0)
-            x +=tamano_alfabeto;
+            x =mod(x,tamano_alfabeto);
 
         int c = mensaje.size();
         for(int i=0;i<c;i++)
