@@ -3,11 +3,13 @@
 
 #include<iostream>
 #include<string>
+#include<time.h>
+#include<stdlib.h>
 using namespace std;
 
-long long mod(long long a, long long b)
+int mod(int a, int b)
 {
-    long long q,r;
+    int q,r;
     q = a/b;
     r = a-(q*b);
     if (r<0)
@@ -15,9 +17,9 @@ long long mod(long long a, long long b)
     return r;
 }
 
-long long mcd(long long a, long long b)
+int mcd(int a, int b)
 {
-    long long r1,r2,c;
+    int r1,r2,c;
     c = a/b;
     r1 = a-(b*c);
 
@@ -36,9 +38,9 @@ long long mcd(long long a, long long b)
     return r2;
 }
 
-void euclides_ext(long long a, long long b, long long &fin1,long long &fin2)
+void euclides_ext(int a, int b, int &fin1,int &fin2)
 {
-    long long q,x,x_1,y,y_1,t;
+    int q,x,x_1,y,y_1,t;
 
     if (a == 0)
     {
@@ -71,14 +73,15 @@ void euclides_ext(long long a, long long b, long long &fin1,long long &fin2)
     fin1=x_1;
     fin2=y_1;
 }
-long long mod_inv(long long a, long long b)
+
+int mod_inv(int a, int b)
 {
-	long long b0 = b, t, q;
-	long long x0 = 0, x1 = 1;
+	int b0 = b, t, q;
+	int x0 = 0, x1 = 1;
 	if (b == 1)
-        	return 1;
-	while (a > 1) 
-	{
+        return 1;
+	while (a > 1)
+    	{
 		q = a / b;
 		t = b;
         	b = a - q*b;
@@ -93,18 +96,25 @@ long long mod_inv(long long a, long long b)
 }
 
 
-
-long long exp_mod(long long a,long long exp, long long n)
+int exp_mod(int a,int exp, int n)
 {
-    long long result = 1;
+    //cout<<"inicio exp mod: "<<endl;
+    int result = 1;
     while(exp>0)
     {
         if (mod(exp,2)==1)
+        {
             result = mod(result*a,n);
+            //cout<<"m_result: "<<result<<endl;
+        }
 
         a = mod(a*a,n);
         exp = exp/2;
+        //cout<<"base: "<<a<<endl;
+        //cout<<"exponente: "<<exp<<endl;
     }
+    //cout<<result<<endl;
     return result;
 }
+
 #endif // FUNCIONES_H_INCLUDED
